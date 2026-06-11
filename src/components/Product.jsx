@@ -3,16 +3,33 @@ import { Products } from "../data";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../redux/cartSlice/CartSlice";
 import { ShoppingCart, Star } from "lucide-react";
+import { ToastContainer, toast, Bounce } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Product = () => {
   const dispatch = useDispatch();
 
   const handleAddToCart = (item) => {
     dispatch(addToCart(item));
+
+    toast.success("Item Add to Cart", {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      transition: Bounce,
+    });
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 via-white to-slate-100">
+      {/* Tostify Notification */}
+      <ToastContainer />
+
       {/* Hero Section */}
       <section className="container mx-auto px-6 py-14">
         <div className="text-center">
@@ -25,8 +42,8 @@ const Product = () => {
           </h1>
 
           <p className="max-w-2xl mx-auto mt-5 text-slate-500 text-lg">
-            Explore premium quality products with modern design,
-            unbeatable prices and fast delivery.
+            Explore premium quality products with modern design, unbeatable
+            prices and fast delivery.
           </p>
         </div>
       </section>
@@ -40,10 +57,8 @@ const Product = () => {
               className="col-span-12 sm:col-span-6 lg:col-span-4 xl:col-span-3"
             >
               <div className="group h-full overflow-hidden rounded-[30px] bg-white border border-slate-200 shadow-sm hover:shadow-2xl transition-all duration-500">
-
                 {/* Image Area */}
                 <div className="relative h-80 overflow-hidden bg-gradient-to-br from-slate-100 via-white to-slate-200">
-
                   {/* Category */}
                   <div className="absolute top-4 left-4 z-10">
                     <span className="px-3 py-1 rounded-full text-xs font-semibold bg-black text-white">
@@ -68,19 +83,18 @@ const Product = () => {
 
                 {/* Content */}
                 <div className="p-6 flex flex-col justify-between">
-
                   <div>
                     <h2 className="text-xl font-bold text-slate-900 line-clamp-2">
                       {item.title}
                     </h2>
 
                     <p className="mt-3 text-sm text-slate-500">
-                      Premium quality product crafted for modern lifestyle and everyday use.
+                      Premium quality product crafted for modern lifestyle and
+                      everyday use.
                     </p>
                   </div>
 
                   <div className="mt-6">
-
                     <div className="flex items-center justify-between mb-5">
                       <div>
                         <p className="text-sm text-slate-500">Price</p>
@@ -101,10 +115,8 @@ const Product = () => {
                       <ShoppingCart size={18} />
                       Add To Cart
                     </button>
-
                   </div>
                 </div>
-
               </div>
             </div>
           ))}
