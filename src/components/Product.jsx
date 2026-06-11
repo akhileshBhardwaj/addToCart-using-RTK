@@ -3,6 +3,8 @@ import { Products } from "../data";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../redux/cartSlice/CartSlice";
 import { ShoppingCart, Star } from "lucide-react";
+
+//Tostify Notification 
 import { ToastContainer, toast, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 

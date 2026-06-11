@@ -8,6 +8,10 @@ import {
 } from "../redux/cartSlice/CartSlice";
 import { useDispatch, useSelector } from "react-redux";
 
+//Tostify Notification
+import { ToastContainer, toast, Bounce } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const Cart = () => {
   const [selectedItem, setSelectedItem] = useState(null);
   const cartItemTotalPrice = useSelector(selectCartTotalPrice);
@@ -17,10 +21,24 @@ const Cart = () => {
 
   const removeItems = (item) => {
     dispatch(removeItem(item));
+
+    toast.success("Item Removed", {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      transition: Bounce,
+    });
   };
 
   return (
     <div className="min-h-screen bg-gray-500 py-10">
+      {/* Tostify Notification */}
+      <ToastContainer />
       <div className="max-w-6xl mx-auto px-4">
         {/* Heading */}
         <h1 className="text-4xl font-bold text-center mb-10">
@@ -102,7 +120,20 @@ const Cart = () => {
             </div>
 
             <button
-              onClick={() => setSelectedItem(item)}
+              onClick={() => {
+                setSelectedItem(item);
+                toast.success("Cart Cleared", {
+                  position: "top-right",
+                  autoClose: 2000,
+                  hideProgressBar: false,
+                  closeOnClick: false,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  theme: "dark",
+                  transition: Bounce,
+                });
+              }}
               className="px-5 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition"
             >
               Buy Now
